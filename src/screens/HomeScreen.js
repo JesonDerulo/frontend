@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../actions/productsActions";
 import Product from "../components/Product";
-
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 function HomeScreen() {
   const dispatch = useDispatch();
 
@@ -16,15 +17,17 @@ function HomeScreen() {
   return (
     <div>
       <h1>This is home page here!</h1>
-      { loading ? (<p>Loading...</p> ): error ?(<p>Error: {error}</p>)
-      : (
+      {loading ? (
+       <Loader />
+      ) : error ? (
+       <Message message={error}/>
+      ) : (
         <div>
           {products.map((product) => (
-            <Product key={product.id} product={product}/>
+            <Product key={product.id} product={product} />
           ))}
         </div>
-      )  
-    }
+      )}
     </div>
   );
 }

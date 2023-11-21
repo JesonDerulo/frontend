@@ -1,9 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Product({ product }) {
   return (
     <div>
-      <h3>{product.name}</h3>
+      <Link to={`product/${product.id}`}>
+        <h3>{product.name}</h3>
+      </Link>
       <p>Price: {product.price}</p>
       <p>Description: {product.description}</p>
       {product.image && (
